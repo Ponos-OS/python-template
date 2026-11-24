@@ -30,18 +30,26 @@ integration_test:
 	uv run pytest tests/ -v
 	@echo "== integration tests done: $$(date -u +%FT%TZ) =="
 
-## Check linters
-lint_check:
-	uv run ruff check .
+## Format TOML files (pyproject.toml, ...)
+format:
+	uv run taplo format
+	uv run ruff format .
+
+## Check TOML files are formatted
+format_check:
+	uv run taplo format --check
 	uv run ruff format --check .
+
+## Check linters
+lint_check: format_check
+	uv run ruff check .
 	uv run flake8
 	uv run ty check
 	uv run lint-imports
 	npx --no-install jscpd
 
 ## Apply linters
-lint:
-	uv run ruff format .
+lint: format
 	uv run ruff check --fix .
 	uv run flake8
 	uv run ty check
@@ -61,4 +69,4 @@ clean:
 	rm -rf .venv .pytest_cache .ruff_cache .mypy_cache .import_linter_cache build dist *.egg-info
 	find . -type d -name __pycache__ -prune -exec rm -rf {} +
 
-.PHONY: help init start test integration_test lint_check lint docker_build docker_run clean
+.PHONY: help init start test integration_test format format_check lint_check lint docker_build docker_run clean

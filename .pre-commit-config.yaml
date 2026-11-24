@@ -62,6 +62,13 @@ repos:
         language: system
         files: __test\.py$
         stages: [pre-commit]
+      - id: taplo
+        name: "taplo (TOML format check)"
+        entry: uv run taplo format --check
+        language: system
+        types: [toml]
+        pass_filenames: false
+        stages: [pre-commit]
       - id: jscpd
         name: "jscpd (copy/paste detection)"
         entry: npx --no-install jscpd

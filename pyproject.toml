@@ -17,6 +17,7 @@ dev = [
     "flake8-aaa>=0.17.2",
     "import-linter>=2.15",
     "ty>=0.0.107",
+    "taplo>=0.9.3",
 ]
 
 [tool.pytest.ini_options]
@@ -34,18 +35,19 @@ extend-exclude = [".venv", "dist", "build"]
 
 [tool.ruff.lint]
 select = [
-    "E", "W",   # pycodestyle
-    "F",        # pyflakes
-    "I",        # isort
-    "B",        # flake8-bugbear
-    "UP",       # pyupgrade
-    "C4",       # comprehensions
-    "SIM",      # simplify
-    "N",        # naming
-    "RUF",      # ruff-specific
+    "E",
+    "W",   # pycodestyle
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "C4",  # comprehensions
+    "SIM", # simplify
+    "N",   # naming
+    "RUF", # ruff-specific
 ]
 ignore = [
-    "E501",     # line-length handled by formatter
+    "E501", # line-length handled by formatter
 ]
 
 [tool.ruff.lint.per-file-ignores]

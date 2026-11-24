@@ -362,6 +362,7 @@ dev = [
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "ruff" },
+    { name = "taplo" },
     { name = "ty" },
 ]
 
@@ -375,6 +376,7 @@ dev = [
     { name = "pytest", specifier = ">=8.3" },
     { name = "pytest-asyncio", specifier = ">=0.24" },
     { name = "ruff", specifier = ">=0.8" },
+    { name = "taplo", specifier = ">=0.9.3" },
     { name = "ty", specifier = ">=0.0.107" },
 ]
 
@@ -478,6 +480,20 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/2e/09/28329441dfa2c463e2d377a69d4ebbe4d51665e9dbd49fb421f3bc80d775/ruff-0.17.6-py3-none-win32.whl", hash = "sha256:c2f4af6670b7a0501904e881bb3f1f24bd0d964dec1eedbd85f0eb73786e1128", size = 9966266, upload-time = "2026-11-19T15:56:21.581Z" },
     { url = "https://files.pythonhosted.org/packages/4b/9d/18ba9730addfc7554c70d6f171fb8dc2c08e774d9fb2b98e7946ef845c59/ruff-0.17.6-py3-none-win_amd64.whl", hash = "sha256:9cd2fd9923e9806b8b6b67a3469e2258e84bd4d21e45d5a1a690afdfb9c8e57d", size = 10365847, upload-time = "2026-11-19T15:56:23.582Z" },
     { url = "https://files.pythonhosted.org/packages/70/8a/59c33e2a64a4f9672f7f842a0dc522915cfbbaffd13d37d0cec57d1c5c5d/ruff-0.17.6-py3-none-win_arm64.whl", hash = "sha256:d8b14e1473dc86ab9069cf7a2ba5041dc012f59110201844ed04cfddf07055a0", size = 9926224, upload-time = "2026-11-19T15:56:25.269Z" },
+]
+
+[[package]]
+name = "taplo"
+version = "0.9.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/71/79/513513960377e1212a28446acb323cf77dfce162e825a822f035b02a422d/taplo-0.9.3.tar.gz", hash = "sha256:6b73b45b9adbd20189d8981ac9055d5465227c58bbe1b0646a7588a1a5c07a1a", size = 102556, upload-time = "2024-08-19T10:22:15.005Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/61/42/a93c18ebb7cf3ee2a7a30dd2fda654aca458956c3b64bdfb9d82b2c42679/taplo-0.9.3-py3-none-macosx_10_12_x86_64.whl", hash = "sha256:1c3db689406d538420c64aa779ac8694cf44c13a46e158d6df406de65980b9c7", size = 4248497, upload-time = "2024-08-19T10:21:59.954Z" },
+    { url = "https://files.pythonhosted.org/packages/82/d2/f5b6e4a4f474f9fe613b5b91012520c3f62e46748a6ce9fd61fc2fb52fa2/taplo-0.9.3-py3-none-macosx_11_0_arm64.whl", hash = "sha256:1e7782f33f97e7aa658d18788748bce5cf3ce440eeb419cf5861cf542740e610", size = 4044421, upload-time = "2024-08-19T10:22:03.06Z" },
+    { url = "https://files.pythonhosted.org/packages/7d/32/4ac46ff15bb9d060f50ad31fb3a80aa8ee1e6ca500104ca8569f6fbdee3d/taplo-0.9.3-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:29d4d7abfcc10bd536e5a43fe6ec2c1931507c1433e79df03ea22e1030611cb6", size = 4334420, upload-time = "2024-08-19T10:22:05.68Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/cc/656aed22a59cf4c50dcaaa66aaa570d4a1412acdd8ea429120a6bb00f336/taplo-0.9.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:33f12648f273478d7330cb3529c82f48f388501e1122e0bea78bce5ff5972b8b", size = 4468935, upload-time = "2024-08-19T10:22:08.106Z" },
+    { url = "https://files.pythonhosted.org/packages/21/15/d8db1db6382b444122fa1a66fe5fe0dd5b04bfbe68c74bdb5345aec11eb2/taplo-0.9.3-py3-none-win32.whl", hash = "sha256:9ab7df76a3facc6d0dd2fe2dae3e8eb52fa458d31d27878d5eac14f5cbc0abac", size = 3482612, upload-time = "2024-08-19T10:22:10.904Z" },
+    { url = "https://files.pythonhosted.org/packages/42/3c/df6641d7e2e84a6dd4de3b3a4426db7f6a7270c05bbdeadd523645c9c45f/taplo-0.9.3-py3-none-win_amd64.whl", hash = "sha256:7d80b630b93fb43cee99d1e1ee07b616236dc5615efaf7cd51074b4cffc33bab", size = 3985843, upload-time = "2024-08-19T10:22:13.446Z" },
 ]
 
 [[package]]
