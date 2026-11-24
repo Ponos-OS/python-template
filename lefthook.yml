@@ -1,0 +1,17 @@
+# Lefthook owns the git hooks; the checks themselves live in .pre-commit-config.yaml.
+# Install with `make init` (runs `npx lefthook install`).
+
+pre-commit:
+  jobs:
+    - name: pre-commit hooks
+      run: uv run pre-commit run --hook-stage pre-commit
+
+pre-push:
+  jobs:
+    - name: pre-push hooks
+      run: uv run pre-commit run --hook-stage pre-push --all-files
+
+commit-msg:
+  jobs:
+    - name: conventional commit message
+      run: uv run pre-commit run --hook-stage commit-msg --commit-msg-filename {1}

@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if ! make test; then echo 'Unit tests failed - commit blocked. Fix tests before committing (see CONTRIBUTING.md).' >&2; exit 2; fi",
+            "if": "Bash(git commit*)",
+            "timeout": 120,
+            "statusMessage": "Running unit tests before commit..."
+          }
+        ]
+      }
+    ]
+  }
+}
