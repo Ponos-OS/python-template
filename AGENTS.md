@@ -1,6 +1,6 @@
 ## Project Summary
 
-A template for Python projects: `uv`, `ruff`, `import-linter`, `jscpd`, `pre-commit` + `lefthook`, Docker and a Makefile. `src/main.py` is a placeholder entrypoint.
+A template for Python projects: `uv`, `ruff`, `import-linter`, `jscpd`, `lefthook`, Docker and a Makefile. `src/main.py` is a placeholder entrypoint.
 
 ## Standards & Guidelines
 

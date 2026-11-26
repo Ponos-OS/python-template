@@ -24,8 +24,7 @@ python-template/
 │   ├── README.md
 │   └── CONTRIBUTING.md
 ├── .claude/settings.json     # Blocks `git commit` when unit tests fail
-├── .pre-commit-config.yaml   # Git hooks
-├── lefthook.yml              # Git hook runner; calls the pre-commit checks per stage
+├── lefthook.yml              # Git hooks
 ├── sgconfig.yml              # ast-grep config
 ├── ast-grep/rules/           # Custom lint rules
 ├── .gitattributes            # LF line endings
