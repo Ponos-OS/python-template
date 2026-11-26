@@ -41,15 +41,18 @@ integration_test:
 	uv run pytest tests/ -v
 	@echo "== integration tests done: $$(date -u +%FT%TZ) =="
 
-## Format TOML files (pyproject.toml, ...)
+## Format the code
 format:
 	uv run taplo format
+	uv run ruff check --fix .
+	npx --no-install ast-grep scan -U src tests
 	uv run ruff format .
 
-## Check TOML files are formatted
+## Check formatting
 format_check:
 	uv run taplo format --check
 	uv run ruff format --check .
+	npx --no-install ast-grep scan src tests
 
 ## Check linters
 lint_check: format_check
@@ -61,7 +64,6 @@ lint_check: format_check
 
 ## Apply linters
 lint: format
-	uv run ruff check --fix .
 	uv run flake8
 	uv run ty check
 	uv run lint-imports

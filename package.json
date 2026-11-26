@@ -1,8 +1,9 @@
 {
   "name": "python-template-tooling",
   "private": true,
-  "description": "Node dev tooling (jscpd, lefthook). Kept separate from the Python project's pyproject.toml.",
+  "description": "Node dev tooling. Kept separate from the Python project's pyproject.toml.",
   "devDependencies": {
+    "@ast-grep/cli": "0.51.3",
     "jscpd": "4.0.5",
     "lefthook": "1.11.13"
   }
