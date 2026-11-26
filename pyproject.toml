@@ -36,15 +36,17 @@ extend-exclude = [".venv", "dist", "build"]
 [tool.ruff.lint]
 select = [
     "E",
-    "W",   # pycodestyle
-    "F",   # pyflakes
-    "I",   # isort
-    "B",   # flake8-bugbear
-    "UP",  # pyupgrade
-    "C4",  # comprehensions
-    "SIM", # simplify
-    "N",   # naming
-    "RUF", # ruff-specific
+    "W",      # pycodestyle
+    "F",      # pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "UP",     # pyupgrade
+    "C4",     # comprehensions
+    "SIM",    # simplify
+    "N",      # naming
+    "RUF",    # ruff-specific
+    "ISC001", # implicitly concatenated strings on one line
+    "ISC002", # implicitly concatenated strings over a backslash continuation
 ]
 ignore = [
     "E501", # line-length handled by formatter

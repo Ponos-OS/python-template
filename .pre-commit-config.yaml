@@ -48,7 +48,8 @@ repos:
         language: system
         types: [python]
         pass_filenames: false
-        stages: [pre-commit]
+        fail_fast: true
+        stages: [pre-commit, pre-push]
       - id: ty
         name: "ty type check"
         entry: uv run ty check
