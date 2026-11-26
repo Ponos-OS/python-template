@@ -24,10 +24,11 @@ python-template/
 │   ├── README.md
 │   └── CONTRIBUTING.md
 ├── .claude/settings.json     # Blocks `git commit` when unit tests fail
-├── .pre-commit-config.yaml   # The checks: ruff, ast-grep, ty, import-linter, flake8-aaa, jscpd, tests, conventional commits
+├── .pre-commit-config.yaml   # Git hooks
 ├── lefthook.yml              # Git hook runner; calls the pre-commit checks per stage
 ├── sgconfig.yml              # ast-grep config
 ├── ast-grep/rules/           # Custom lint rules
+├── .gitattributes            # LF line endings
 ├── .jscpd.json               # Copy/paste detection config
 ├── .flake8                   # flake8-aaa config
 ├── .taplo.toml               # TOML formatter config (also read by the "Even Better TOML" editor extension)

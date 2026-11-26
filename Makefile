@@ -2,6 +2,13 @@
 .DEFAULT_GOAL := help
 .SHELLFLAGS := -ec
 
+# Tracked and new text files, NUL separated.
+TEXT_FILES = git grep --untracked -Ilz -e ''
+YAML_FILES = $(TEXT_FILES) -- '*.yml' '*.yaml'
+TOML_FILES = $(TEXT_FILES) -- '*.toml'
+# The fixers matter for everything else, such as Markdown, YAML, JSON, the Makefile and the Dockerfile.
+WHITESPACE_FIXERS = end-of-file-fixer trailing-whitespace-fixer
+
 ## Show this help message
 help:
 	@echo "Makefile targets:"
@@ -43,6 +50,12 @@ integration_test:
 
 ## Format the code
 format:
+	$(YAML_FILES) | xargs -0 uv run check-yaml
+	$(TOML_FILES) | xargs -0 uv run check-toml
+	# A fixer exits 1 after changing a file, so only a second failure is an error.
+	for fixer in $(WHITESPACE_FIXERS); do
+		$(TEXT_FILES) | xargs -0 uv run $$fixer || $(TEXT_FILES) | xargs -0 uv run $$fixer
+	done
 	uv run taplo format
 	uv run ruff check --fix .
 	npx --no-install ast-grep scan -U src tests
@@ -50,6 +63,15 @@ format:
 
 ## Check formatting
 format_check:
+	$(YAML_FILES) | xargs -0 uv run check-yaml
+	$(TOML_FILES) | xargs -0 uv run check-toml
+	# The fixers have no check mode, so they run on a throwaway copy.
+	copy="$$(mktemp -d)"
+	trap 'rm -rf "$$copy"' EXIT
+	$(TEXT_FILES) | tar --null -T - -cf - | tar -xf - -C "$$copy"
+	for fixer in $(WHITESPACE_FIXERS); do
+		$(TEXT_FILES) | (cd "$$copy" && xargs -0 uv run --project "$(CURDIR)" $$fixer)
+	done
 	uv run taplo format --check
 	uv run ruff format --check .
 	npx --no-install ast-grep scan src tests

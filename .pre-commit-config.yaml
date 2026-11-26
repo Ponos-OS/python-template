@@ -4,36 +4,6 @@
 default_install_hook_types: [pre-commit, pre-push, commit-msg]
 
 repos:
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.4
-    hooks:
-      - id: ruff
-        name: ruff lint
-        args: [--fix]
-        stages: [pre-commit]
-      - id: ruff-format
-        name: ruff format
-        stages: [pre-commit]
-      - id: ruff
-        name: ruff lint (pre-push - all files)
-        args: [--exit-non-zero-on-fix]
-        stages: [pre-push]
-        pass_filenames: false
-        always_run: true
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
-      - id: check-yaml
-        stages: [pre-commit]
-      - id: check-toml
-        stages: [pre-commit]
-      - id: mixed-line-ending
-        args: [--fix, lf]
-        stages: [pre-commit]
-      - id: end-of-file-fixer
-        stages: [pre-commit]
-      - id: trailing-whitespace
-        stages: [pre-commit]
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v3.6.0
     hooks:
@@ -42,48 +12,13 @@ repos:
         args: []
   - repo: local
     hooks:
-      - id: ast-grep
-        name: ast-grep rules
-        entry: npx --no-install ast-grep scan src tests
+      - id: lint
+        name: make lint
+        entry: make lint
         language: system
-        types: [python]
         pass_filenames: false
-        fail_fast: true
+        always_run: true
         stages: [pre-commit, pre-push]
-      - id: ty
-        name: "ty type check"
-        entry: uv run ty check
-        language: system
-        types: [python]
-        pass_filenames: false
-        stages: [pre-commit]
-      - id: import-linter
-        name: "import-linter (import architecture, see pyproject.toml)"
-        entry: uv run lint-imports
-        language: system
-        types: [python]
-        pass_filenames: false
-        stages: [pre-commit]
-      - id: flake8-aaa
-        name: "flake8-aaa (AAA structure of sync tests, see CONTRIBUTING.md)"
-        entry: uv run flake8
-        language: system
-        files: __test\.py$
-        stages: [pre-commit]
-      - id: taplo
-        name: "taplo (TOML format check)"
-        entry: uv run taplo format --check
-        language: system
-        types: [toml]
-        pass_filenames: false
-        stages: [pre-commit]
-      - id: jscpd
-        name: "jscpd (copy/paste detection)"
-        entry: npx --no-install jscpd
-        language: system
-        types: [python]
-        pass_filenames: false
-        stages: [pre-commit]
       - id: tests
         name: run unit tests
         entry: make test
