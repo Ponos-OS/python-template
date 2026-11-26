@@ -31,6 +31,8 @@ init:
 	npm install
 	@[ -f .env ] || { [ -f .env.example ] && cp .env.example .env; }
 	npx --no-install lefthook install
+	# git push opens the SSH connection before pre-push runs; keep it alive while slow tests finish.
+	git config core.sshCommand > /dev/null || git config core.sshCommand "ssh -o ServerAliveInterval=30"
 
 ## Run the app
 start:
@@ -58,7 +60,8 @@ format:
 	done
 	uv run taplo format
 	uv run ruff check --fix .
-	npx --no-install ast-grep scan -U src tests
+	# Colored output queries the terminal's background; inside a git hook the reply leaks into the shell.
+	npx --no-install ast-grep scan --color never -U src tests
 	uv run ruff format .
 
 ## Check formatting
