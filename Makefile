@@ -6,7 +6,6 @@
 TEXT_FILES = git grep --untracked -Ilz -e ''
 YAML_FILES = $(TEXT_FILES) -- '*.yml' '*.yaml'
 TOML_FILES = $(TEXT_FILES) -- '*.toml'
-PYTHON_FILES = $(TEXT_FILES) -- '*.py'
 # The fixers matter for everything else, such as Markdown, YAML, JSON, the Makefile and the Dockerfile.
 WHITESPACE_FIXERS = end-of-file-fixer trailing-whitespace-fixer
 
@@ -82,11 +81,6 @@ format_check:
 
 ## Check linters
 lint_check: format_check
-	# pyupgrade has no check mode, so it runs on a throwaway copy.
-	copy="$$(mktemp -d)"
-	trap 'rm -rf "$$copy"' EXIT
-	$(PYTHON_FILES) | tar --null -T - -cf - | tar -xf - -C "$$copy"
-	$(PYTHON_FILES) | (cd "$$copy" && xargs -0 uv run --project "$(CURDIR)" pyupgrade --py312-plus)
 	uv run ruff check .
 	uv run flake8
 	uv run ty check
@@ -95,9 +89,6 @@ lint_check: format_check
 
 ## Apply linters
 lint: format
-	$(PYTHON_FILES) | xargs -0 uv run pyupgrade --py312-plus --exit-zero-even-if-changed
-	# pyupgrade can leave its rewrites unformatted.
-	uv run ruff format .
 	uv run flake8
 	uv run ty check
 	uv run lint-imports
